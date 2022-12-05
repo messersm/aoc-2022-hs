@@ -9,6 +9,5 @@ Something like the following should get you going:
 cd aoc-2022-hs
 stack run -- --help
 # Example:
-stack run -- -p 1 -s 2 input/puzzle-1.2.txt
+stack run -- -p 1 -s 2 input/puzzle-1.txt
 ```
-
