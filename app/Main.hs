@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Aoc2022.Puzzle1 as Puzzle1
+import Aoc2022.Puzzle2 as Puzzle2
 
 import Options.Applicative
 import Text.Printf
@@ -47,5 +48,11 @@ run (Opts 1 1 filename) = do
 run (Opts 1 2 filename) = do
   input <- readFile filename
   putStrLn $ Puzzle1.solve2 input
+run (Opts 2 1 filename) = do
+  input <- readFile filename
+  putStrLn $ Puzzle2.solve1 input
+run (Opts 2 2 filename) = do
+  input <- readFile filename
+  putStrLn $ Puzzle2.solve2 input
 
 run (Opts p s _) = printf "No such puzzle: %d.%d\n" p s

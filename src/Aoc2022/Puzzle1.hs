@@ -2,6 +2,8 @@
 
 module Aoc2022.Puzzle1 where
 
+import Aoc2022.Lib (runParser)
+
 import Data.Char
 import Data.List
 import Text.ParserCombinators.ReadP
@@ -16,12 +18,6 @@ integer = read <$> (many1 $ satisfy isDigit)
 
 parser :: ReadP [[Integer]]
 parser = sepBy (sepBy1 integer newline) (count 2 newline)
-
-
-runParser :: ReadP a -> String -> Maybe a
-runParser p s = if null result then Nothing else Just $ fst $ last result
-  where
-    result = readP_to_S p s
 
 solve1 :: String -> String
 solve1 input = case runParser parser input of
