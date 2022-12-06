@@ -1,6 +1,10 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE LambdaCase #-}
+
 module Aoc2022.Puzzle2 where
 
-import Aoc2022.Lib (runParser)
+import Aoc2022.Lib (runParser, Puzzled(..))
 import Data.List.Extra
 import Text.ParserCombinators.ReadP
 
@@ -71,8 +75,8 @@ outcomeP = do
     'Z' -> return Win
     _   -> pfail -- never
 
-parser :: ReadP [(Choice, Choice)]
-parser = many $ do
+parser1 :: ReadP [(Choice, Choice)]
+parser1 = many $ do
   opp <- opponent
   skipSpaces
   mine <- own
@@ -87,18 +91,22 @@ parser2 = many $ do
   optional $ satisfy (== '\n')
   return (opp, out)
 
+data Part1 = Part1
+data Part2 = Part2
 
-solve1 :: String -> String
-solve1 s = case runParser parser s of
-  Nothing      -> "Invalid input"
-  Just choices -> show $ sum $ uncurry total <$> choices
+instance Puzzled Part1 [(Choice, Choice)] Int where
+  num'    _    = 2
+  part'   _    = 1
+  parser' _    = parser1
+  solve'  _ xs = sum $ uncurry total <$> xs
 
-solve2 :: String -> String
-solve2 s = case runParser parser2 s of
-  Nothing   -> "Invalid input"
-  Just game -> show $ sum $ uncurry total <$> choices
+instance Puzzled Part2 [(Choice, Outcome)] Int where
+  num'    _    = 2
+  part'   _    = 2
+  parser' _    = parser2
+  solve'  _ xs = sum $ uncurry total <$> choices
     where
       choices = do
-        (first, expected) <- game
+        (first, expected) <- xs
         let second = head [y | (x, y, z) <- table, x == first, z == expected]
         return (first, second)

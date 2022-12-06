@@ -1,5 +1,6 @@
 module Main (main) where
 
+import Aoc2022.Lib
 import Aoc2022.Puzzle1 as Puzzle1
 import Aoc2022.Puzzle2 as Puzzle2
 
@@ -10,6 +11,14 @@ import Data.Semigroup ((<>))
 import Numeric.Natural (Natural)
 
 data Opts = Opts !Natural !Natural !String deriving (Show)
+
+puzzles :: [Puzzle]
+puzzles =
+  [ the Puzzle1.Part1
+  , the Puzzle1.Part2
+  , the Puzzle2.Part1
+  , the Puzzle2.Part2
+  ]
 
 optsParser :: Parser Opts
 optsParser =
@@ -42,17 +51,14 @@ main = do
   run opts
 
 run :: Opts -> IO ()
-run (Opts 1 1 filename) = do
-  input <- readFile filename
-  putStrLn $ Puzzle1.solve1 input
-run (Opts 1 2 filename) = do
-  input <- readFile filename
-  putStrLn $ Puzzle1.solve2 input
-run (Opts 2 1 filename) = do
-  input <- readFile filename
-  putStrLn $ Puzzle2.solve1 input
-run (Opts 2 2 filename) = do
-  input <- readFile filename
-  putStrLn $ Puzzle2.solve2 input
-
-run (Opts p s _) = printf "No such puzzle: %d.%d\n" p s
+run (Opts n p filename)
+    | null matches = printf "No such puzzle: %d.%d\n" n p
+    | otherwise    = do
+      input <- readFile filename
+      let result = solve puzzle input
+      case result of
+        Left error   -> putStrLn error
+        Right result -> putStrLn result
+  where
+    matches = [puz | puz <- puzzles, num puz == n, part puz == p]
+    puzzle = head matches
