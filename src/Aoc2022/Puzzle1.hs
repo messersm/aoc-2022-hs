@@ -7,9 +7,6 @@ import Data.Char
 import Data.List
 import Text.ParserCombinators.ReadP
 
-integer :: ReadP Integer
-integer = read <$> (many1 $ satisfy isDigit)
-
 parser :: ReadP [[Integer]]
 parser = sepBy (sepBy1 integer newline) (count 2 newline)
 
