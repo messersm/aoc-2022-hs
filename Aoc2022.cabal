@@ -30,6 +30,7 @@ library
       Aoc2022.Puzzle1
       Aoc2022.Puzzle2
       Aoc2022.Puzzle3
+      Aoc2022.Puzzle4
   other-modules:
       Paths_Aoc2022
   hs-source-dirs:

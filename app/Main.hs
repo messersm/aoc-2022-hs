@@ -4,6 +4,7 @@ import Aoc2022.Lib
 import Aoc2022.Puzzle1 as Puzzle1
 import Aoc2022.Puzzle2 as Puzzle2
 import Aoc2022.Puzzle3 as Puzzle3
+import Aoc2022.Puzzle4 as Puzzle4
 
 import Options.Applicative
 import Text.Printf
@@ -21,6 +22,8 @@ puzzles =
   , the Puzzle2.part2
   , the Puzzle3.part1
   , the Puzzle3.part2
+  , the Puzzle4.part1
+  , the Puzzle4.part2
   ]
 
 optsParser :: Parser Opts
