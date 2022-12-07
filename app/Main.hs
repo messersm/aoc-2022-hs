@@ -20,6 +20,7 @@ puzzles =
   , the Puzzle2.part1
   , the Puzzle2.part2
   , the Puzzle3.part1
+  , the Puzzle3.part2
   ]
 
 optsParser :: Parser Opts
