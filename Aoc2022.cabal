@@ -31,6 +31,7 @@ library
       Aoc2022.Puzzle2
       Aoc2022.Puzzle3
       Aoc2022.Puzzle4
+      Aoc2022.Puzzle5
   other-modules:
       Paths_Aoc2022
   hs-source-dirs:
@@ -38,6 +39,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , containers
     , extra
     , optparse-applicative
   default-language: Haskell2010
@@ -52,6 +54,7 @@ executable Aoc2022-exe
   build-depends:
       Aoc2022
     , base >=4.7 && <5
+    , containers
     , extra
     , optparse-applicative
   default-language: Haskell2010
@@ -67,6 +70,7 @@ test-suite Aoc2022-test
   build-depends:
       Aoc2022
     , base >=4.7 && <5
+    , containers
     , extra
     , optparse-applicative
   default-language: Haskell2010
