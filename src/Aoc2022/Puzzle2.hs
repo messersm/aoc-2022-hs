@@ -1,7 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE LambdaCase #-}
-
 module Aoc2022.Puzzle2 where
 
 import Aoc2022.Lib (runParser, Puzzled(..))
@@ -91,22 +87,14 @@ parser2 = many $ do
   optional $ satisfy (== '\n')
   return (opp, out)
 
-data Part1 = Part1
-data Part2 = Part2
+part1 :: Puzzled [(Choice, Choice)] Int
+part1 = Puzzled 2 1 parser1 (\xs -> sum $ uncurry total <$> xs)
 
-instance Puzzled Part1 [(Choice, Choice)] Int where
-  num'    _    = 2
-  part'   _    = 1
-  parser' _    = parser1
-  solve'  _ xs = sum $ uncurry total <$> xs
-
-instance Puzzled Part2 [(Choice, Outcome)] Int where
-  num'    _    = 2
-  part'   _    = 2
-  parser' _    = parser2
-  solve'  _ xs = sum $ uncurry total <$> choices
-    where
-      choices = do
-        (first, expected) <- xs
-        let second = head [y | (x, y, z) <- table, x == first, z == expected]
-        return (first, second)
+part2 :: Puzzled [(Choice, Outcome)] Int
+part2 = Puzzled 2 2 parser2 solve
+  where
+    solve xs = sum $ uncurry total <$> choices xs
+    choices xs = do
+      (first, expected) <- xs
+      let second = head [y | (x, y, z) <- table, x == first, z == expected]
+      return (first, second)

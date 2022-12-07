@@ -1,7 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE LambdaCase #-}
-
 module Aoc2022.Puzzle1 where
 
 import Aoc2022.Lib (runParser, Puzzled(..))
@@ -21,17 +17,9 @@ integer = read <$> (many1 $ satisfy isDigit)
 parser :: ReadP [[Integer]]
 parser = sepBy (sepBy1 integer newline) (count 2 newline)
 
-data Part1 = Part1
-data Part2 = Part2
+part1 :: Puzzled [[Integer]] Integer
+part1 = Puzzled 1 1 parser (\xs -> maximum $ sum <$> xs)
 
-instance Puzzled Part1 [[Integer]] Integer where
-  num'    _    = 1
-  part'   _    = 1
-  parser' _    = parser
-  solve'  _ xs =  maximum $ sum <$> xs
+part2 :: Puzzled [[Integer]] Integer
+part2 = Puzzled 1 2 parser (\xs -> sum $ take 3 $ reverse $ sort $ sum <$> xs)
 
-instance Puzzled Part2 [[Integer]] Integer where
-  num'    _    = 1
-  part'   _    = 2
-  parser' _    = parser
-  solve'  _ xs = sum $ take 3 $ reverse $ sort $ sum <$> xs

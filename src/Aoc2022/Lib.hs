@@ -1,7 +1,3 @@
-{-# LANGUAGE AllowAmbiguousTypes #-}
-{-# LANGUAGE FunctionalDependencies #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-
 module Aoc2022.Lib where
 
 import Text.ParserCombinators.ReadP
@@ -14,19 +10,20 @@ runParser p s
   where
     result = readP_to_S p s
 
-class Show b => Puzzled p a b | p -> a b where
-  num'    :: p -> Natural
-  part'   :: p -> Natural
-  parser' :: p -> ReadP a
-  solve'  :: p -> a -> b
-
-data Puzzle = Puzzle
-  { num  :: Natural
-  , part :: Natural
-  , solve :: String -> Either String String
+data Puzzled a b = Puzzled
+  { num'    :: !Natural
+  , part'   :: !Natural
+  , parser' :: !(ReadP a)
+  , solve'  :: !(a -> b)
   }
 
-the :: Puzzled p a b => p -> Puzzle
+data Puzzle = Puzzle
+  { num   :: !Natural
+  , part  :: !Natural
+  , solve :: !(String -> Either String String)
+  }
+
+the :: (Show b) => Puzzled a b -> Puzzle
 the p = Puzzle (num' p) (part' p) f
   where
     f s = case parsed of

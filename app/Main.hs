@@ -14,34 +14,18 @@ data Opts = Opts !Natural !Natural !String deriving (Show)
 
 puzzles :: [Puzzle]
 puzzles =
-  [ the Puzzle1.Part1
-  , the Puzzle1.Part2
-  , the Puzzle2.Part1
-  , the Puzzle2.Part2
+  [ the Puzzle1.part1
+  , the Puzzle1.part2
+  , the Puzzle2.part1
+  , the Puzzle2.part2
   ]
 
 optsParser :: Parser Opts
 optsParser =
   Opts <$>
-    option auto (
-      short 'p'
-      <> long "puzzle"
-      <> metavar "Nat"
-      <> value 1
-      <> showDefault
-      <> help "Number of the puzzle")
-  <*> option auto (
-      short 's'
-      <> long "subpuzzle"
-      <> metavar "Nat"
-      <> value 1
-      <> showDefault
-      <> help "Number of the sub puzzle")
-  <*> strOption (
-      short 'i'
-      <> long "input"
-      <> help "Input filename")
-
+      argument auto (metavar "puzzle")
+  <*> argument auto (metavar "part")
+  <*> argument str (metavar "inputfile")
 
 main :: IO ()
 main = do
