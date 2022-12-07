@@ -1,15 +1,11 @@
 module Aoc2022.Puzzle1 where
 
-import Aoc2022.Lib (runParser, Puzzled(..))
+import Aoc2022.Lib (Puzzled(..))
+import Aoc2022.Parsers
 
 import Data.Char
 import Data.List
 import Text.ParserCombinators.ReadP
-
-newline :: ReadP ()
-newline = do
-  satisfy (== '\n')
-  return ()
 
 integer :: ReadP Integer
 integer = read <$> (many1 $ satisfy isDigit)

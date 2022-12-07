@@ -1,6 +1,6 @@
 module Aoc2022.Puzzle2 where
 
-import Aoc2022.Lib (runParser, Puzzled(..))
+import Aoc2022.Lib (Puzzled(..))
 import Data.List.Extra
 import Text.ParserCombinators.ReadP
 

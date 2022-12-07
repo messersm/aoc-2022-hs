@@ -3,6 +3,7 @@ module Main (main) where
 import Aoc2022.Lib
 import Aoc2022.Puzzle1 as Puzzle1
 import Aoc2022.Puzzle2 as Puzzle2
+import Aoc2022.Puzzle3 as Puzzle3
 
 import Options.Applicative
 import Text.Printf
@@ -18,6 +19,7 @@ puzzles =
   , the Puzzle1.part2
   , the Puzzle2.part1
   , the Puzzle2.part2
+  , the Puzzle3.part1
   ]
 
 optsParser :: Parser Opts

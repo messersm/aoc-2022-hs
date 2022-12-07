@@ -31,4 +31,3 @@ the p = Puzzle (num' p) (part' p) f
         Just x  -> Right $ show $ solve' p x
       where
         parsed = runParser (parser' p) s
-
