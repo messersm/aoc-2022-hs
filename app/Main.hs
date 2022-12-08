@@ -1,11 +1,12 @@
 module Main (main) where
 
 import Aoc2022.Lib
-import Aoc2022.Puzzle1 as Puzzle1
-import Aoc2022.Puzzle2 as Puzzle2
-import Aoc2022.Puzzle3 as Puzzle3
-import Aoc2022.Puzzle4 as Puzzle4
-import Aoc2022.Puzzle5 as Puzzle5
+import qualified Aoc2022.Puzzle1 as Puzzle1
+import qualified Aoc2022.Puzzle2 as Puzzle2
+import qualified Aoc2022.Puzzle3 as Puzzle3
+import qualified Aoc2022.Puzzle4 as Puzzle4
+import qualified Aoc2022.Puzzle5 as Puzzle5
+import qualified Aoc2022.Puzzle6 as Puzzle6
 
 import Options.Applicative
 import Text.Printf
@@ -27,6 +28,8 @@ puzzles =
   , the Puzzle4.part2
   , the Puzzle5.part1
   , the Puzzle5.part2
+  , the Puzzle6.part1
+  , the Puzzle6.part2
   ]
 
 optsParser :: Parser Opts

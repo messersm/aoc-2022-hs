@@ -10,8 +10,6 @@ import Data.Map.Strict
 import Data.Maybe
 import Text.ParserCombinators.ReadP
 
-import Debug.Trace
-
 data Move = Move !Int !Int !Int deriving (Show)
 
 row :: ReadP [Maybe Char]
