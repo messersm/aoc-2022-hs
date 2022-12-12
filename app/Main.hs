@@ -8,6 +8,7 @@ import qualified Aoc2022.Puzzle4 as Puzzle4
 import qualified Aoc2022.Puzzle5 as Puzzle5
 import qualified Aoc2022.Puzzle6 as Puzzle6
 import qualified Aoc2022.Puzzle7 as Puzzle7
+import qualified Aoc2022.Puzzle8 as Puzzle8
 
 import Options.Applicative
 import Text.Printf
@@ -32,6 +33,7 @@ puzzles =
   , the Puzzle6.part1
   , the Puzzle6.part2
   , the Puzzle7.part1
+  , the Puzzle8.part1
   ]
 
 optsParser :: Parser Opts

@@ -11,5 +11,8 @@ integer = read <$> (many1 $ satisfy isDigit)
 integral :: (Read a, Integral a) => ReadP a
 integral = read <$> (many1 $ satisfy isDigit)
 
+digit :: (Read a, Integral a) => ReadP a
+digit = read . pure <$> satisfy isDigit
+
 newline :: ReadP Char
 newline = satisfy (== '\n')
